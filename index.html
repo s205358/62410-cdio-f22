@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Solitaire</title>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <!-- Author: Aqib; Tobias -->
+  <!-- Email: s205342@student.dtu.dk; s205358@student.dtu.dk-->
+
+  <span id="status">Loading&hellip;</span>
+
+  <div id="root" hidden>
+    <header>
+      <h1>Solitaire</h1>
+    </header>
+
+    <main>
+      <section>
+        <p>(<strong>Note</strong>: Either action will trigger the solver automatically)</p>
+        <div>
+          <!-- https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Taking_still_photos -->
+          <video id="video">Video stream not available.</video>
+          <br>
+          <button id="capture">Capture</button>
+        </div>
+        <p><strong>Or</strong>&hellip;</p>
+        <div>
+          <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture -->
+          <label for="upload">Upload image from file or camera</label>
+          <br>
+          <input type="file" id="upload" name="upload" capture="environment" accept="image/*">
+        </div>
+      </section>
+
+      <section>
+        <img id="image" alt="no image" hidden>
+        <canvas id="canvas"></canvas>
+      </section>
+
+      <!-- <button type="button" id="button">Try to solve</button>
+      <button type="button" id="save-game">Save Game</button>
+      <button tyoe="reset" id="new-game">New Game</button> -->
+
+      <!-- <button id="submit">Submit</button> -->
+      <button id="undo">Undo</button>
+      <button id="reset">Reset</button>
+
+      <section>
+        <h2>Solution</h2>
+
+        <div class="solution__container">
+          <div class="solitaire__container">
+            <div id="row-1" class="row">
+              <div id="stock__pile" class="col-1"></div>
+              <div id="waste__pile" class="col-2"></div>
+              <div id="foundation__pile-1" class="foundation__pile col-4"></div>
+              <div id="foundation__pile-2" class="foundation__pile col-5"></div>
+              <div id="foundation__pile-3" class="foundation__pile col-6"></div>
+              <div id="foundation__pile-4" class="foundation__pile col-7"></div>
+            </div>
+
+            <div id="row-2" class="row">
+              <div id="tableau__pile-1" class="tableau__pile col-1"></div>
+              <div id="tableau__pile-2" class="tableau__pile col-2"></div>
+              <div id="tableau__pile-3" class="tableau__pile col-3"></div>
+              <div id="tableau__pile-4" class="tableau__pile col-4"></div>
+              <div id="tableau__pile-5" class="tableau__pile col-5"></div>
+              <div id="tableau__pile-6" class="tableau__pile col-6"></div>
+              <div id="tableau__pile-7" class="tableau__pile col-7"></div>
+            </div>
+          </div>
+
+          <div class="moves__container">
+            <ul id="moves" class="moves__list">
+              <li>No moves</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Gruppe 20 &copy; 2022</p>
+    </footer>
+  </div>
+
+  <div id="edit__modal" hidden>
+    <h2>Edit Card</h2>
+
+    <label for="row">Row</label>
+    <input type="text" name="row" id="row">
+
+    <label for="col">Column</label>
+    <input type="text" name="col" id="col">
+
+    <label for="order">Order</label>
+    <input type="text" name="order" id="order">
+
+    <label for="">Card</label>
+    <select name="card" id="card">
+      <!-- Options loaded by JavaScript -->
+    </select>
+
+    <button onclick="onCancelEdit()">Cancel</button>
+    <button onclick="onSaveEdit()">Save</button>
+  </div>
+
+  <div hidden>
+    <!-- ranks -->
+    <img src="assets/img/ranks/ace.jpg" alt="" id="ace">
+    <img src="assets/img/ranks/two.jpg" alt="" id="two">
+    <img src="assets/img/ranks/three.jpg" alt="" id="three">
+    <img src="assets/img/ranks/four.jpg" alt="" id="four">
+    <img src="assets/img/ranks/five.jpg" alt="" id="five">
+    <img src="assets/img/ranks/six.jpg" alt="" id="six">
+    <img src="assets/img/ranks/seven.jpg" alt="" id="seven">
+    <img src="assets/img/ranks/eight.jpg" alt="" id="eight">
+    <img src="assets/img/ranks/nine.jpg" alt="" id="nine">
+    <img src="assets/img/ranks/ten_one.jpg" alt="" id="ten_one">
+    <img src="assets/img/ranks/ten_zero.jpg" alt="" id="ten_zero">
+    <img src="assets/img/ranks/jack.jpg" alt="" id="jack">
+    <img src="assets/img/ranks/queen.jpg" alt="" id="queen">
+    <img src="assets/img/ranks/king.jpg" alt="" id="king">
+    <img src="assets/img/ranks/red_ace.jpg" alt="" id="red_ace">
+    <img src="assets/img/ranks/red_two.jpg" alt="" id="red_two">
+    <img src="assets/img/ranks/red_three.jpg" alt="" id="red_three">
+    <img src="assets/img/ranks/red_four.jpg" alt="" id="red_four">
+    <img src="assets/img/ranks/red_five.jpg" alt="" id="red_five">
+    <img src="assets/img/ranks/red_six.jpg" alt="" id="red_six">
+    <img src="assets/img/ranks/red_seven.jpg" alt="" id="red_seven">
+    <img src="assets/img/ranks/red_eight.jpg" alt="" id="red_eight">
+    <img src="assets/img/ranks/red_nine.jpg" alt="" id="red_nine">
+    <img src="assets/img/ranks/red_ten_one.jpg" alt="" id="red_ten_one">
+    <img src="assets/img/ranks/red_ten_zero.jpg" alt="" id="red_ten_zero">
+    <img src="assets/img/ranks/red_jack.jpg" alt="" id="red_jack">
+    <img src="assets/img/ranks/red_queen.jpg" alt="" id="red_queen">
+    <img src="assets/img/ranks/red_king.jpg" alt="" id="red_king">
+
+    <!-- suits -->
+    <img src="assets/img/suits/clubs.jpg" alt="" id="clubs">
+    <img src="assets/img/suits/clubs_alt.jpg" alt="" id="clubs_alt">
+    <img src="assets/img/suits/diamonds.jpg" alt="" id="diamonds">
+    <img src="assets/img/suits/hearts.jpg" alt="" id="hearts">
+    <img src="assets/img/suits/spades.jpg" alt="" id="spades">
+    <img src="assets/img/suits/spades_alt.jpg" alt="" id="spades_alt">
+  </div>
+
+  <!-- script async src="js/lib/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script -->
+  <script async src="js/lib/opencv.js"></script>
+  <script defer src="js/edit.js"></script>
+  <script defer src="js/compare.js"></script>
+  <script defer src="js/video.js"></script>
+  <script defer src="js/image.js"></script>
+  <script defer src="js/solitaire.js"></script>
+  <script defer src="js/solver.js"></script>
+  <script defer src="js/render.js"></script>
+  <script defer src="js/storage.js"></script>
+  <script defer src="js/main.js"></script>
+  <!-- script defer src="script.js"></script -->
+</body>
+
+</html>

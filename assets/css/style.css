@@ -1,0 +1,71 @@
+.solitaire__container {
+  padding: 8px;
+  display: grid;
+  grid-template-columns: none;
+  grid-template-rows: minmax(calc(40px * 8.5/5.5), auto);
+  row-gap: 12px;
+  background-color: rgb(6, 85, 45);
+  width: fit-content;
+  border-radius: 8px;
+  border: 3px solid rgb(3, 61, 32)
+}
+
+.solitaire__container img {
+  box-shadow: 2px 2px 11px 3px rgba(40, 39, 48, 0.2);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(7, 40px);
+  grid-template-rows: auto;
+  column-gap: 6px;
+}
+
+#waste__pile {
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+
+.row img {
+  width: 40px;
+}
+
+.tableau__pile img {
+  margin-top: -100%;
+}
+
+.tableau__pile img:first-child {
+  margin-top: 0;
+}
+
+.foundation__pile {
+  position: relative
+}
+
+.foundation__pile img {
+  position: absolute;
+  /*margin-top: -100%;*/
+}
+
+.foundation__pile img:first-child {
+  /* margin-top: 0;*/
+}
+
+.solution__container {
+  background-color: rgb(13, 53, 215);
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.moves__container {
+  color: #fff;
+}
+
+/*
+Canvas, Video, Image
+*/
+canvas, video {
+  width: auto; 
+  max-width: 640px; 
+  height: min-content;
+}

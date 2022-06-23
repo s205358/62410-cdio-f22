@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Solitaire</title>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <!-- Author: Tobias -->
+  <!-- Email: 205358@student.dtu.dk-->
+
+  <span id="status">Loading&hellip;</span>
+
+  <div id="root" hidden>
+    <header>
+      <h1>Solitaire</h1>
+    </header>
+
+    <main>
+      <button id="test-solver">Test Solver</button>
+      <ul id="resullt"></ul>
+    </main>
+
+    <footer>
+      <p>Gruppe 20 &copy; 2022</p>
+    </footer>
+  </div>
+
+  <div hidden>
+    <!-- ranks -->
+    <img src="assets/img/ranks/ace.jpg" alt="" id="ace">
+    <img src="assets/img/ranks/two.jpg" alt="" id="two">
+    <img src="assets/img/ranks/three.jpg" alt="" id="three">
+    <img src="assets/img/ranks/four.jpg" alt="" id="four">
+    <img src="assets/img/ranks/five.jpg" alt="" id="five">
+    <img src="assets/img/ranks/six.jpg" alt="" id="six">
+    <img src="assets/img/ranks/seven.jpg" alt="" id="seven">
+    <img src="assets/img/ranks/eight.jpg" alt="" id="eight">
+    <img src="assets/img/ranks/nine.jpg" alt="" id="nine">
+    <img src="assets/img/ranks/ten_one.jpg" alt="" id="ten_one">
+    <img src="assets/img/ranks/ten_zero.jpg" alt="" id="ten_zero">
+    <img src="assets/img/ranks/jack.jpg" alt="" id="jack">
+    <img src="assets/img/ranks/queen.jpg" alt="" id="queen">
+    <img src="assets/img/ranks/king.jpg" alt="" id="king">
+    <img src="assets/img/ranks/red_ace.jpg" alt="" id="red_ace">
+    <img src="assets/img/ranks/red_two.jpg" alt="" id="red_two">
+    <img src="assets/img/ranks/red_three.jpg" alt="" id="red_three">
+    <img src="assets/img/ranks/red_four.jpg" alt="" id="red_four">
+    <img src="assets/img/ranks/red_five.jpg" alt="" id="red_five">
+    <img src="assets/img/ranks/red_six.jpg" alt="" id="red_six">
+    <img src="assets/img/ranks/red_seven.jpg" alt="" id="red_seven">
+    <img src="assets/img/ranks/red_eight.jpg" alt="" id="red_eight">
+    <img src="assets/img/ranks/red_nine.jpg" alt="" id="red_nine">
+    <img src="assets/img/ranks/red_ten_one.jpg" alt="" id="red_ten_one">
+    <img src="assets/img/ranks/red_ten_zero.jpg" alt="" id="red_ten_zero">
+    <img src="assets/img/ranks/red_jack.jpg" alt="" id="red_jack">
+    <img src="assets/img/ranks/red_queen.jpg" alt="" id="red_queen">
+    <img src="assets/img/ranks/red_king.jpg" alt="" id="red_king">
+
+    <!-- suits -->
+    <img src="assets/img/suits/clubs.jpg" alt="" id="clubs">
+    <img src="assets/img/suits/clubs_alt.jpg" alt="" id="clubs_alt">
+    <img src="assets/img/suits/diamonds.jpg" alt="" id="diamonds">
+    <img src="assets/img/suits/hearts.jpg" alt="" id="hearts">
+    <img src="assets/img/suits/spades.jpg" alt="" id="spades">
+    <img src="assets/img/suits/spades_alt.jpg" alt="" id="spades_alt">
+  </div>
+
+  <script async src="js/lib/opencv.js"></script>
+  <script defer src="js/edit.js"></script>
+  <script defer src="js/compare.js"></script>
+  <script defer src="js/video.js"></script>
+  <script defer src="js/image.js"></script>
+  <script defer src="js/solitaire.js"></script>
+  <script defer src="js/solver.js"></script>
+  <script defer src="js/render.js"></script>
+  <script defer src="js/storage.js"></script>
+  <script src="js/performance.js"></script>
+  <script>
+    let root = document.getElementById('root')
+    root.hidden = false
+    
+    let testSolverButton = document.getElementById('test-solver')
+    testSolverButton.onclick = function() {
+      // testSolver()
+      modifiedTestSolver()
+    }
+  </script>
+</body>
+
+</html>
